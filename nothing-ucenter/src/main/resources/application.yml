@@ -1,0 +1,21 @@
+spring.datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://119.29.21.93:3307/nothing?useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: G00dwi!!world
+    platform: mysql
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+logging.level.org.springframework.security: DEBUG
+
+logging.leve.org.springframework: DEBUG
+
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
