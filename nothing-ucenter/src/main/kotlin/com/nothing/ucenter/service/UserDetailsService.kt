@@ -33,7 +33,7 @@ class UserDetailsService :org.springframework.security.core.userdetails.UserDeta
 
         return SecurityUser(user,
                 true, true, true, true,
-                getAuthorities(Arrays.asList(roleRepository!!.getOne("1"))))
+                getAuthorities(roleRepository!!.findAll()))
 
     }
 

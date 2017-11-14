@@ -43,15 +43,6 @@ class UcenterMain : WebSecurityConfigurerAdapter() {
         return BCryptPasswordEncoder()
     }
 
-    @Bean
-    fun daoAuthenticationProvider(): DaoAuthenticationProvider {
-        val daoAuthenticationProvider = DaoAuthenticationProvider()
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService)
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder())
-        daoAuthenticationProvider.isHideUserNotFoundExceptions = false
-        return daoAuthenticationProvider
-    }
-
     @Throws(Exception::class)
     override fun configure(auth: AuthenticationManagerBuilder?) {
         auth!!

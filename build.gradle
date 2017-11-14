@@ -1,7 +1,7 @@
 buildscript {
 	ext {
 		kotlinVersion = '1.1.51'
-		springBootVersion = '2.0.0.M6'
+		springBootVersion = '1.5.6.RELEASE'
 	}
 	repositories {
 		maven { url "http://nexus.team.fengchaoli.com/repository/maven-public" }
