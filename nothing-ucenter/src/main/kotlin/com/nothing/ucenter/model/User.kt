@@ -18,7 +18,7 @@ class User : BaseModel(), Serializable {
 	@Column
 	var password: String? = null
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = arrayOf(JoinColumn(name = "userId")), inverseJoinColumns = arrayOf(JoinColumn(name = "roleId")))
 	var roles:List<Role>? = ArrayList()
 }

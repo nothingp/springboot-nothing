@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  application:
+    name: backend-service
+#  cloud:
+#    config:
+#      uri: http://${config.host:192.168.1.140}:${config.port:8888}
+
+server:
+  port: 8083
+
+management.security.enabled: false
+
+security:
+  oauth2:
+    resource:
+      id: backend-service
+      user-info-uri: http://localhost:8080/uaa/user  #用户信息的获取，异构系统要自己做，spring cloud系直接对接
+      prefer-token-info: false
+
+logging.level.org.springframework.security: DEBUG
