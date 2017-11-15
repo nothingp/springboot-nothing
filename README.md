@@ -1,4 +1,4 @@
-# Spring Cloud下基于OAUTH2认证授权的实现
+# Kotlin版本 的 Spring Cloud下基于OAUTH2认证授权的实现  
 
 
 ![](https://github.com/nothingp/springboot-nothing/blob/master/images/architecture.png)
@@ -28,79 +28,43 @@ Grant Type：
 - `Client Credentials`:用在应用API访问。
 
 
-### 5 演示
 
-#### 5.1 客户端调用
+后续升级计划：
 
-使用`Postman`向`http://localhost:8080/uaa/oauth/token`发送请求获得`access_token`(admin用户的如`7f9b54d4-fd25-4a2c-a848-ddf8f119230b`)
+- 适配现有流程的php产品，如wordpress、cms等，实现用户提议统一
+- 旧的java架构快速接入
+- sprin cloud config 及 
+- api gateway 的可配置性：webservice、websocket等通过简单的界面配置，即可生效
+- 分布式的链路跟踪
+- discovery-service（服务发现） 与 docker 的集合
+
+
+### 演示
+
+#### 客户端调用
+
+使用`Postman`向`http://localhost:8080/uaa/oauth/token`发送请求获得`access_token`(admin用户的如`76bf72fa-a391-42fb-b6f0-0216dcf40d7e`)
 
 - admin用户
 
-  ![](https://raw.githubusercontent.com/wiselyman/uaa-zuul/master/images/post-admin.png)
+  ![](https://github.com/nothingp/springboot-nothing/blob/master/images/step1.jpeg)
 
   -------------
 
-  ​
+- 通过网关+access_token 获取用户信息
 
-  ![](https://raw.githubusercontent.com/wiselyman/uaa-zuul/master/images/user-admin.png)
+  ![](https://github.com/nothingp/springboot-nothing/blob/master/images/step2.jpeg)
 
-  -----------
+  -------------
+  
+- 通过网关+access_token 调用后端的微服务
 
-  ​
+  ![](https://github.com/nothingp/springboot-nothing/blob/master/images/step3.jpeg)
 
-  ![](https://raw.githubusercontent.com/wiselyman/uaa-zuul/master/images/demo-admin.png)
+  -------------
+  
+- 通过网关+access_token 调用后端的微服务获取用户信息，即多端的用户信息是贯通的
 
-  -------
+  ![](https://github.com/nothingp/springboot-nothing/blob/master/images/step4.jpeg)
 
-  ​
-
-  ​
-
-- wyf用户
-
-  ![](https://raw.githubusercontent.com/wiselyman/uaa-zuul/master/images/post-wyf.png)
-
-  ----
-
-  ​
-
-  ![](https://raw.githubusercontent.com/wiselyman/uaa-zuul/master/images/user-wyf.png)
-
-  ----
-
-  ​
-
-  ![](https://raw.githubusercontent.com/wiselyman/uaa-zuul/master/images/demo-wyf.png)
-
-
-
-#### 5.2 api-gateway中的webapp调用
-
-暂时没有做测试，下次补充。
-
-### 6 注销oauth2
-#### 6.1 增加自定义注销`Endpoint`
-所谓注销只需将`access_token`和`refresh_token`失效即可，我们模仿`org.springframework.security.oauth2.provider.endpoint.TokenEndpoint`写一个使`access_token`和`refresh_token`失效的`Endpoint`:
-
-```
-@FrameworkEndpoint
-public class RevokeTokenEndpoint {
-
-    @Autowired
-    @Qualifier("consumerTokenServices")
-    ConsumerTokenServices consumerTokenServices;
-
-    @RequestMapping(method = RequestMethod.DELETE, value = "/oauth/token")
-    @ResponseBody
-    public String revokeToken(String access_token) {
-        if (consumerTokenServices.revokeToken(access_token)){
-            return "注销成功";
-        }else{
-            return "注销失败";
-        }
-    }
-}
-```
-
-#### 6.2 注销请求方式
-![](https://raw.githubusercontent.com/wiselyman/uaa-zuul/master/images/logout.png)
+  -------------
