@@ -33,7 +33,7 @@ Grant Type：
 
 - 适配现有流程的php产品，如wordpress、cms等，实现用户提议统一
 - 旧的java架构快速接入
-- sprin cloud config 及 
+- sprin cloud config 
 - api gateway 的可配置性：webservice、websocket等通过简单的界面配置，即可生效
 - 分布式的链路跟踪
 - discovery-service（服务发现） 与 docker 的集合
