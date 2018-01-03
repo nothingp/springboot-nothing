@@ -2,16 +2,17 @@ spring:
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
   application:
-      name: ucenter
+    name: ucenter
   datasource:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://119.29.21.93:3307/nothing?useUnicode=true&amp;characterEncoding=UTF-8
-      username: root
-      password: G00dwi!!world
-      platform: mysql
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://119.29.21.93:3307/nothing?useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: G00dwi!!world
+    platform: mysql
   jpa:
-      hibernate:
-        ddl-auto: update
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
 server:
   port: 9000
