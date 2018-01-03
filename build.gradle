@@ -49,4 +49,27 @@ allprojects {
 			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 		}
 	}
+
+
+	if (project.subprojects) {
+		bootRepackage {
+			enabled = false
+		}
+	} else {
+		apply plugin: 'docker'
+		docker {
+			maintainer = 'happyyangyuan <happyyangyuan@163.com>'
+			baseImage = 'openjdk:8-jre-alpine'
+		}
+		task dockerBuild(type: Docker, dependsOn: build) {
+			applicationName = project.name
+			addFile {
+				from configurations.archives.artifacts.files
+				into '/data/workspace/' + project.name
+			}
+			workingDir '/data/workspace/' + project.name
+			setEnvironment('HOST_MACHINE_IP', hostMachineIp)
+			defaultCommand(['java', '-jar', '-Dspring.profiles.active=docker', "${project.name}-${project.version}.jar"])
+		}
+	}
 }
