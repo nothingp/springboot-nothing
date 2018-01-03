@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  application:
+      name: api-gateway
+#  cloud:
+#    config:
+#      uri: http://${config.host:192.168.1.140}:${config.port:8888}
+
+server:
+  port: 80
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery/eureka/
+
+zuul:
+  routes:
+    uaa:
+      path: /uaa/**
+      sensitiveHeaders:
+      serviceId: ucenter
+      #url: http://localhost:9000/
+    order:
+      path: /order/**
+      sensitiveHeaders:
+      serviceId: backend  //先屏蔽服务发现
+      #url: http://localhost:8083/
+  add-proxy-headers: true
+
+security:
+  oauth2:
+    client:
+      access-token-uri: http://api-gateway/uaa/oauth/token
+      user-authorization-uri: http://api-gateway/uaa/oauth/authorize
+      client-id: webapp
+    resource:
+      user-info-uri: http://api-gateway/uaa/user
+      prefer-token-info: false
