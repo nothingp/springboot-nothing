@@ -10,23 +10,23 @@ spring:
 server:
   port: 8080
 
-
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://${eureka.host:localhost}:${eureka.port:8080}/eureka/
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
 
 zuul:
   routes:
     uaa:
       path: /uaa/**
       sensitiveHeaders:
-      url: http://localhost:9000/
+      serviceId: ucenter
+      #url: http://localhost:9000/
     order:
       path: /order/**
       sensitiveHeaders:
-      #serviceId: order-service  //先屏蔽服务发现
-      url: http://localhost:8083/
+      serviceId: backend  //先屏蔽服务发现
+      #url: http://localhost:8083/
   add-proxy-headers: true
 
 security:

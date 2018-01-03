@@ -3,12 +3,12 @@ spring:
     active: ${SPRING_PROFILES_ACTIVE:dev}
   application:
       name: discovery
-#  cloud:
-#    config:
-#      uri: http://${config.host:192.168.1.140}:${config.port:8888}
 
 server:
   port: 8761
+  session-timeout: 30
+  tomcat.max-threads: 0
+  tomcat.uri-encoding: UTF-8
 
 eureka:
   instance:

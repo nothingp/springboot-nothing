@@ -3,6 +3,7 @@ package com.nothing.ucenter.model
 
 
 import java.io.Serializable
+import java.util.*
 import javax.persistence.*
 
 @Entity

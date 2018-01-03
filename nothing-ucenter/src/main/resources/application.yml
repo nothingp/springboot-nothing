@@ -1,3 +1,6 @@
+server:
+  port: 9000
+
 spring:
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
@@ -11,11 +14,15 @@ spring:
     platform: mysql
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
 
-server:
-  port: 9000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
+
 
 logging.level.org.springframework.security: DEBUG
 
