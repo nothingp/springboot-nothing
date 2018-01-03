@@ -19,8 +19,8 @@ allprojects {
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 
-	group = 'com.nothing'
-	version = '0.0.1-SNAPSHOT'
+	group = 'registry.cn-shenzhen.aliyuncs.com/nothing'
+	version = '1.0'
 	sourceCompatibility = 1.8
 	compileKotlin {
 		kotlinOptions.jvmTarget = "1.8"
@@ -58,7 +58,7 @@ allprojects {
 	} else {
 		apply plugin: 'docker'
 		docker {
-			maintainer = 'happyyangyuan <happyyangyuan@163.com>'
+			maintainer = 'zhoujundi <m@zhoujd.me>'
 			baseImage = 'openjdk:8-jre-alpine'
 		}
 		task dockerBuild(type: Docker, dependsOn: build) {
@@ -69,7 +69,7 @@ allprojects {
 			}
 			workingDir '/data/workspace/' + project.name
 			setEnvironment('HOST_MACHINE_IP', hostMachineIp)
-			defaultCommand(['java', '-jar', '-Dspring.profiles.active=docker', "${project.name}-${project.version}.jar"])
+			defaultCommand(['java', '-jar', '-Dspring.profiles.active=test', "${project.name}-${project.version}.jar"])
 		}
 	}
 }
