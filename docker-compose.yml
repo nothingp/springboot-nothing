@@ -1,0 +1,59 @@
+version: "3.3"
+
+services:
+  discovery:
+    image: registry.cn-shenzhen.aliyuncs.com/nothing/nothing-discovery:1.0
+    ports:
+      - 8761:80
+    networks:
+      - springcloud
+    deploy:
+      mode: replicated
+      replicas: 1
+    logging:
+      options:
+        max-size: 100m
+        max-file: 3
+  api-gateway:
+    image: registry.cn-shenzhen.aliyuncs.com/nothing/nothing-gateway:1.0
+    ports:
+      - 8080:80
+    networks:
+      - springcloud
+    deploy:
+      mode: replicated
+      replicas: 1
+    logging:
+      options:
+        max-size: 100m
+        max-file: 3
+  ucenter:
+    image: registry.cn-shenzhen.aliyuncs.com/nothing/nothing-ucenter:1.0
+    networks:
+      - springcloud
+    deploy:
+      mode: replicated
+      replicas: 1
+    logging:
+      options:
+        max-size: 100m
+        max-file: 3
+  backend:
+    image: registry.cn-shenzhen.aliyuncs.com/nothing/nothing-backend:1.0
+    networks:
+      - springcloud
+    deploy:
+      mode: replicated
+      replicas: 1
+    logging:
+      options:
+        max-size: 100m
+        max-file: 3
+#volumes:
+#  db-data:
+networks:
+  springcloud:
+    ipam:
+      config:
+        -
+          subnet: 192.168.67.0/24

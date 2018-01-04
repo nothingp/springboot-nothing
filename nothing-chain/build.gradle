@@ -1,0 +1,4 @@
+dependencies {
+	compile('io.zipkin.java:zipkin-server')
+	runtime('io.zipkin.java:zipkin-autoconfigure-ui')
+}

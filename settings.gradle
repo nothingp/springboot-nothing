@@ -23,4 +23,5 @@ dir.eachDirRecurse { subDir ->
 }
 include 'nothing-config'
 include 'nothing-discovery'
+include 'nothing-chain'
 

@@ -3,6 +3,11 @@ spring:
     active: ${SPRING_PROFILES_ACTIVE:dev}
   application:
     name: backend
+  sleuth:
+    sampler:
+      percentage: 1
+  zipkin:
+    base-url: http://localhost:9411
 #  cloud:
 #    config:
 #      uri: http://${config.host:192.168.1.140}:${config.port:8888}
