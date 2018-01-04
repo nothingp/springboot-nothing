@@ -25,7 +25,7 @@ zuul:
     order:
       path: /order/**
       sensitiveHeaders:
-      serviceId: backend  //先屏蔽服务发现
+      serviceId: backend
       #url: http://localhost:8083/
   add-proxy-headers: true
 
