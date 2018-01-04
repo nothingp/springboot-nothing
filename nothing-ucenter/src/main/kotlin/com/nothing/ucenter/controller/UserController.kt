@@ -28,7 +28,7 @@ class UserController {
 
     @FeignClient("backend")
     interface ZipkinClientService1Interface {
-        @RequestMapping("/")
+        @RequestMapping("/demo")
         fun getDemo(): String
     }
 }
