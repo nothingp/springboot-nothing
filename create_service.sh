@@ -10,7 +10,7 @@ registry.cn-shenzhen.aliyuncs.com/nothing/nothing-discovery:1.0
 #chain
 docker service create --with-registry-auth --network springcloud \
 --name chain --log-opt max-size=100m --log-opt max-file=3 \
--p 9411:80 \
+-p 8411:80 \
 registry.cn-shenzhen.aliyuncs.com/nothing/nothing-chain:1.0
 
 
