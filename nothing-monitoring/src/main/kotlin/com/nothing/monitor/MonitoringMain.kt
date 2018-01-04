@@ -6,7 +6,6 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.netflix.turbine.stream.EnableTurbineStream
 
 @SpringBootApplication
-@EnableTurbineStream
 @EnableHystrixDashboard
 class MonitoringMain {
     companion object {
