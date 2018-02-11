@@ -9,6 +9,8 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UsernameNotFoundException
+import org.springframework.social.security.SocialUserDetails
+import org.springframework.social.security.SocialUserDetailsService
 import org.springframework.stereotype.Service
 import java.util.stream.Collectors
 import javax.transaction.Transactional
@@ -16,7 +18,9 @@ import javax.transaction.Transactional
 
 @Transactional
 @Service
-class UserDetailsService :org.springframework.security.core.userdetails.UserDetailsService {
+class UserDetailsService :org.springframework.security.core.userdetails.UserDetailsService, SocialUserDetailsService {
+
+
     @Autowired
     val userRepository: UserRepository? = null
 
@@ -34,6 +38,15 @@ class UserDetailsService :org.springframework.security.core.userdetails.UserDeta
 
     }
 
+    @Throws(UsernameNotFoundException::class)
+    override fun loadUserByUserId(userId: String): SocialUserDetails {
+        val user = userRepository!!.findFirstByEmail(userId);
+
+        return SecurityUser(user,
+                true, true, true, true,
+                getAuthorities(roleRepository!!.findAll()))
+
+    }
     // UTIL
     fun getAuthorities(roles: Collection<Role>): Collection<GrantedAuthority> {
         return getGrantedAuthorities(getPrivileges(roles))

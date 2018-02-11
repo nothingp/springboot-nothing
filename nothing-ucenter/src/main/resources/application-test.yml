@@ -8,13 +8,13 @@ spring:
     name: ucenter
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://119.29.21.93:3307/nothing?useUnicode=true&amp;characterEncoding=UTF-8
-    username: root
-    password: G00dwi!!world
+    url: jdbc:mysql://out-zhoujundi.mysql.rds.aliyuncs.com:3307/nothing?useUnicode=true&amp;characterEncoding=UTF-8
+    username: zjd_admin
+    password: judy84711
     platform: mysql
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
   sleuth:
     sampler:
