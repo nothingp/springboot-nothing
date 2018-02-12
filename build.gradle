@@ -64,7 +64,6 @@ allprojects {
 			baseImage = 'openjdk:8-jre-alpine'
 		}
 		task dockerBuild(type: Docker, dependsOn: build) {
-			push = true
 			applicationName = project.name
 			addFile {
 				from configurations.archives.artifacts.files
