@@ -12,6 +12,7 @@ import org.springframework.social.oauth2.OAuth2Template
 import org.springframework.util.MultiValueMap
 import org.springframework.web.client.RestTemplate
 import java.nio.charset.Charset
+import java.util.*
 import javax.servlet.http.HttpServletRequest
 
 
@@ -86,6 +87,7 @@ class WeixinOAuth2Template(private val clientId: String, private val clientSecre
      * 构建获取授权码的请求。也就是引导用户跳转到微信的地址。
      */
     override fun buildAuthenticateUrl(parameters: OAuth2Parameters): String {
+        parameters.set("redirect_uri", "http://uc.zhoujd.me/login/weixin_snsapi")
         var url = super.buildAuthenticateUrl(parameters)
         url = "$url&appid=$clientId&scope=snsapi_base"
         return url
