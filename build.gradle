@@ -59,16 +59,9 @@ allprojects {
 		}
 	} else {
 		apply plugin: 'docker'
-		apply plugin: 'com.bmuschko.docker-remote-api'
 		docker {
 			maintainer = 'zhoujundi <m@zhoujd.me>'
 			baseImage = 'openjdk:8-jre-alpine'
-
-			registryCredentials {
-				url = 'https://registry-internal.cn-shenzhen.aliyuncs.com'
-				username = 'zhoujundi711@163.com'
-				password = 'judy8471'
-			}
 		}
 		task dockerBuild(type: Docker, dependsOn: build) {
 			push = true
