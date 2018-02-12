@@ -12,6 +12,7 @@ import org.springframework.social.oauth2.OAuth2Template
 import org.springframework.util.MultiValueMap
 import org.springframework.web.client.RestTemplate
 import java.nio.charset.Charset
+import javax.servlet.http.HttpServletRequest
 
 
 class WeixinOAuth2Template(private val clientId: String, private val clientSecret: String, authorizeUrl: String, private val accessTokenUrl: String) : OAuth2Template(clientId, clientSecret, authorizeUrl, accessTokenUrl) {
