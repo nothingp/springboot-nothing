@@ -59,6 +59,7 @@ allprojects {
 		}
 	} else {
 		apply plugin: 'docker'
+		apply plugin: 'com.bmuschko.docker-remote-api'
 		docker {
 			maintainer = 'zhoujundi <m@zhoujd.me>'
 			baseImage = 'openjdk:8-jre-alpine'
